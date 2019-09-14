@@ -373,7 +373,18 @@ class QueryManagerMysqlRealDeviceMap extends QueryManagerMysql
 
     public function getTeamGuardians($team_id)
     {
-        return array();
+        $req = "SELECT COUNT(*) AS total, guarding_pokemon_id
+				FROM gym WHERE team_id = '".$team_id."'
+				GROUP BY guarding_pokemon_id
+				ORDER BY total DESC
+				LIMIT 0,3";
+        $result = $this->mysqli->query($req);
+        $datas = array();
+        while ($data = $result->fetch_object()) {
+            $datas[] = $data;
+        }
+
+        return $datas;
     }
 
     public function getOwnedAndPoints($team_id)
