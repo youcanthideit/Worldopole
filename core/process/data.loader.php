@@ -247,7 +247,7 @@ if (!empty($page)) {
                 $i = 0;
                 $datas = $manager->getTeamGuardians($team_values->id);
                 foreach ($datas as $data) {
-                    $teams->$team_key->guardians->$i = $data->guard_pokemon_id;
+                    $teams->$team_key->guardians->$i = $data->guarding_pokemon_id;
 
                     ++$i;
                 }
